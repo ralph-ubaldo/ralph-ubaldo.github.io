@@ -368,9 +368,52 @@ h1 .hi { color: var(--accent); }
 /* ── ABOUT ──────────────────────────────────────── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 280px;
   gap: 4rem;
-  align-items: start;
+  align-items: center;
+}
+
+.hero-photo-wrap {
+  flex-shrink: 0;
+  perspective: 1000px;
+}
+
+.hero-flip-card {
+  width: 100%;
+  aspect-ratio: 3/4;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border-radius: 12px;
+  border: 3px solid #1a3fcb;
+}
+
+.hero-flip-card:hover {
+  transform: rotateY(180deg);
+}
+
+.hero-flip-front,
+.hero-flip-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.hero-flip-front img,
+.hero-flip-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.hero-flip-back {
+  transform: rotateY(180deg);
 }
 
 .about-copy p {
@@ -900,18 +943,14 @@ footer {
       <p>Teaching trained me to document processes clearly, communicate complex ideas easily, and design systems others can follow without needing help. Those same skills make better automation, better handoffs, and better tools for the teams I work with.</p>
       <p>Every workflow I build starts with researching the business first. The goal is never sophistication for its own sake. It is solving a real problem that stays solved.</p>
     </div>
-    <div class="stat-stack">
-      <div class="stat-item">
-        <div class="stat-val">4</div>
-        <div class="stat-desc">Production-ready automation projects</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-val">100+</div>
-        <div class="stat-desc">Estimated hours of manual work automated per week across all builds</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-val">$0</div>
-        <div class="stat-desc">Tools budget. Every build runs on free-tier infrastructure.</div>
+    <div class="hero-photo-wrap">
+      <div class="hero-flip-card">
+        <div class="hero-flip-front">
+          <img src="assets/Untitled_design__2_.png" alt="Ralph Ubaldo" />
+        </div>
+        <div class="hero-flip-back">
+          <img src="assets/ralp.jpg" alt="Ralph Ubaldo" />
+        </div>
       </div>
     </div>
   </div>
@@ -931,6 +970,16 @@ footer {
   <div class="s-eyebrow">What I have built</div>
   <h2>Four systems.<br />Real problems solved.</h2>
   <p class="s-sub">Fully functional. Built and tested from scratch.</p>
+  <div class="stat-stack" style="flex-direction:row; margin-bottom:2rem;">
+    <div class="stat-item" style="flex:1;">
+      <div class="stat-val">100+</div>
+      <div class="stat-desc">Estimated hours of manual work automated per week across all builds</div>
+    </div>
+    <div class="stat-item" style="flex:1;">
+      <div class="stat-val">$0</div>
+      <div class="stat-desc">Tools budget. Every build runs on free-tier infrastructure.</div>
+    </div>
+  </div>
 
   <div class="proj-grid">
 
