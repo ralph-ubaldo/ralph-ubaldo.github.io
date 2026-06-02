@@ -37,10 +37,10 @@
 }
 
 :root {
-  --bg:        #f5f4f0;
-  --bg2:       #eeecea;
-  --bg3:       #e6e4e0;
-  --surface:   #ffffff;
+  --bg:        #f8f0e8;
+  --bg2:       #fff8f2;
+  --bg3:       #eadbd1;
+  --surface:   #fffdf9;
   --text:      #141210;
   --text2:     #3d3a36;
   --muted:     #6b6760;
@@ -68,7 +68,12 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  --mx: 50%;
+  --my: 20%;
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(255, 190, 150, 0.34), transparent 34rem),
+    radial-gradient(circle at calc(var(--mx) + 18%) calc(var(--my) + 12%), rgba(26, 63, 203, 0.10), transparent 30rem),
+    linear-gradient(135deg, var(--bg) 0%, var(--bg2) 52%, #fffaf6 100%);
   color: var(--text);
   font-family: var(--font-b);
   font-size: 16px;
@@ -1192,6 +1197,11 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+window.addEventListener('pointermove', e => {
+  document.body.style.setProperty('--mx', `${e.clientX}px`);
+  document.body.style.setProperty('--my', `${e.clientY}px`);
+});
 </script>
 
 </body>
