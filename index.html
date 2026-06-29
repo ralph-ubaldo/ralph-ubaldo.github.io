@@ -37,32 +37,32 @@
 }
 
 :root {
-  --bg:        #f8f0e8;
-  --bg2:       #fff8f2;
-  --bg3:       #eadbd1;
-  --surface:   #fffdf9;
-  --text:      #141210;
-  --text2:     #3d3a36;
-  --muted:     #6b6760;
-  --faint:     #a09d99;
-  --line:      rgba(0,0,0,0.08);
-  --line-md:   rgba(0,0,0,0.13);
-  --line-hi:   rgba(0,0,0,0.22);
-  --accent:    #1a3fcb;
-  --accent-lt: #e8ecfb;
-  --accent-bd: rgba(26,63,203,0.25);
-  --accent-txt:#1a3fcb;
-  --teal:      #0f7c6e;
-  --teal-lt:   #e0f5f2;
-  --teal-bd:   rgba(15,124,110,0.25);
-  --amber:     #a05c00;
-  --amber-lt:  #fef3e0;
-  --amber-bd:  rgba(160,92,0,0.22);
+  --bg:        #080a1a;
+  --bg2:       #0d0f2b;
+  --bg3:       #12153a;
+  --surface:   #13163d;
+  --text:      #e8eaf6;
+  --text2:     #b0b8e0;
+  --muted:     #7880b0;
+  --faint:     #4a5080;
+  --line:      rgba(255,255,255,0.07);
+  --line-md:   rgba(255,255,255,0.12);
+  --line-hi:   rgba(255,255,255,0.20);
+  --accent:    #7b7ef8;
+  --accent-lt: rgba(123,126,248,0.12);
+  --accent-bd: rgba(123,126,248,0.30);
+  --accent-txt:#a0a3ff;
+  --teal:      #4ade80;
+  --teal-lt:   rgba(74,222,128,0.10);
+  --teal-bd:   rgba(74,222,128,0.25);
+  --amber:     #fbbf24;
+  --amber-lt:  rgba(251,191,36,0.10);
+  --amber-bd:  rgba(251,191,36,0.25);
   --font-h:    'Geist', 'DM Sans', sans-serif;
   --font-b:    'DM Sans', sans-serif;
   --radius:    8px;
-  --shadow:    0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
-  --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.07);
+  --shadow:    0 1px 3px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.5), 0 8px 32px rgba(0,0,0,0.4);
 }
 
 html { scroll-behavior: smooth; }
@@ -74,9 +74,9 @@ html {
   --mx: 50%;
   --my: 20%;
   background:
-    radial-gradient(circle at var(--mx) var(--my), rgba(255, 190, 150, 0.34), transparent 34rem),
-    radial-gradient(circle at calc(var(--mx) + 18%) calc(var(--my) + 12%), rgba(26, 63, 203, 0.10), transparent 30rem),
-    linear-gradient(135deg, var(--bg) 0%, var(--bg2) 52%, #fffaf6 100%);
+    radial-gradient(circle at var(--mx) var(--my), rgba(123,126,248,0.15), transparent 38rem),
+    radial-gradient(circle at calc(var(--mx) + 20%) calc(var(--my) + 15%), rgba(74,222,128,0.05), transparent 28rem),
+    linear-gradient(135deg, #080a1a 0%, #0a0c22 50%, #080a1a 100%);
   color: var(--text);
   font-family: var(--font-b);
   font-size: 16px;
@@ -108,7 +108,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0 2.5rem;
-  background: rgba(245,244,240,0.9);
+  background: rgba(8,10,26,0.85);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
@@ -247,12 +247,132 @@ h2 {
 #hero {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
   padding: 8rem 2.5rem 5rem;
   max-width: 980px;
   margin: 0 auto;
   position: relative;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 0;
+  padding-right: 3rem;
+}
+
+.hero-canvas-wrap {
+  flex-shrink: 0;
+  width: 380px;
+  height: 300px;
+  position: relative;
+}
+
+/* ── WORKFLOW CANVAS ────────────────────────────── */
+.wf-canvas {
+  width: 100%;
+  height: 100%;
+  background: rgba(13,15,43,0.8);
+  border: 1px solid var(--line-md);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(123,126,248,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.wf-topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+  background: rgba(8,10,26,0.6);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 6px;
+}
+
+.wf-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+}
+.wf-dot-r { background: #ff5f57; }
+.wf-dot-y { background: #ffbd2e; opacity:0.5; }
+
+.wf-label {
+  margin-left: auto;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  font-family: var(--font-h);
+}
+
+.wf-status {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  color: var(--teal);
+  font-family: var(--font-h);
+  font-weight: 500;
+}
+
+.wf-status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.wf-runs {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 0.62rem;
+  color: var(--faint);
+  font-family: var(--font-h);
+}
+
+.wf-svg {
+  position: absolute;
+  top: 32px;
+  left: 0; right: 0;
+  bottom: 36px;
+  width: 100%;
+  height: calc(100% - 68px);
+}
+
+/* Node boxes */
+.wf-node {
+  rx: 8;
+  ry: 8;
+}
+
+/* Dashed animated connection lines */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -24; }
+}
+
+.wf-path {
+  fill: none;
+  stroke: rgba(123,126,248,0.45);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  animation: dash-flow 1.2s linear infinite;
+}
+
+.wf-path-2 { animation-delay: -0.4s; }
+.wf-path-3 { animation-delay: -0.8s; }
+.wf-path-4 { animation-delay: -0.2s; }
+.wf-path-5 { animation-delay: -0.6s; }
+
+@media (max-width: 760px) {
+  #hero { flex-direction: column; }
+  .hero-content { padding-right: 0; margin-bottom: 2rem; }
+  .hero-canvas-wrap { width: 100%; height: 220px; }
 }
 
 .hero-badge {
@@ -322,8 +442,8 @@ h1 .hi { color: var(--accent); }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--text);
-  color: var(--bg);
+  background: var(--accent);
+  color: #fff;
   font-family: var(--font-b);
   font-size: 0.875rem;
   font-weight: 500;
@@ -332,7 +452,7 @@ h1 .hi { color: var(--accent); }
   transition: background 0.15s, transform 0.15s;
   letter-spacing: 0.005em;
 }
-.btn-solid:hover { background: var(--text2); transform: translateY(-1px); }
+.btn-solid:hover { background: #9092ff; transform: translateY(-1px); }
 
 .btn-outline {
   display: inline-flex;
@@ -344,10 +464,10 @@ h1 .hi { color: var(--accent); }
   padding: 0.72rem 1.5rem;
   border-radius: 6px;
   border: 1px solid var(--line-md);
-  background: var(--surface);
+  background: rgba(255,255,255,0.04);
   transition: border-color 0.15s, background 0.15s;
 }
-.btn-outline:hover { border-color: var(--line-hi); background: var(--bg2); }
+.btn-outline:hover { border-color: var(--accent-bd); background: var(--accent-lt); }
 
 .hero-scroll {
   position: absolute;
@@ -668,7 +788,7 @@ h1 .hi { color: var(--accent); }
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.9);
+  background: rgba(13,15,43,0.85);
   border: 1px solid var(--line-md);
   border-radius: 50%;
   width: 36px;
@@ -687,7 +807,7 @@ h1 .hi { color: var(--accent); }
 }
 
 .carousel-btn:hover {
-  background: #fff;
+  background: rgba(123,126,248,0.2);
   transform: translateY(-50%) scale(1.08);
 }
 
@@ -850,13 +970,13 @@ h1 .hi { color: var(--accent); }
 .clink:hover svg { color: var(--accent); }
 
 .clink.primary {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
-.clink.primary svg { color: rgba(245,244,240,0.6); }
-.clink.primary:hover { background: var(--text2); border-color: var(--text2); color: var(--bg); transform: translateX(3px); }
-.clink.primary:hover svg { color: rgba(245,244,240,0.8); }
+.clink.primary svg { color: rgba(255,255,255,0.7); }
+.clink.primary:hover { background: #9092ff; border-color: #9092ff; color: #fff; transform: translateX(3px); }
+.clink.primary:hover svg { color: rgba(255,255,255,0.9); }
 
 .info-card {
   background: var(--surface);
@@ -1028,22 +1148,81 @@ footer {
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-badge">
-    <span class="hero-badge-dot"></span>
-    Available for work
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Available for work
+    </div>
+    <p class="hero-name-line">Ralph Ubaldo &mdash; AI Automation Specialist</p>
+    <h1>I make AI do the<br /><span class="hi">boring stuff.</span><br />You enjoy an extra<br />cup of coffee.</h1>
+    <p class="hero-desc">Building intelligent automation systems that handle repetitive work, streamline operations, and make sure nothing important gets missed or delayed.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-solid">
+        Get in touch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </a>
+      <a href="#projects" class="btn-outline">
+        See my work
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v10M3 8l4 4 4-4"/></svg>
+      </a>
+    </div>
   </div>
-  <p class="hero-name-line">Ralph Ubaldo &mdash; AI Automation Specialist</p>
-  <h1>I make AI do the<br /><span class="hi">boring stuff.</span><br />You enjoy an extra<br />cup of coffee.</h1>
-  <p class="hero-desc">Building intelligent automation systems that handle repetitive work, streamline operations, and make sure nothing important gets missed or delayed.</p>
-  <div class="hero-ctas">
-    <a href="#contact" class="btn-solid">
-      Get in touch
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-    </a>
-    <a href="#projects" class="btn-outline">
-      See my work
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v10M3 8l4 4 4-4"/></svg>
-    </a>
+
+  <div class="hero-canvas-wrap">
+    <div class="wf-canvas">
+      <div class="wf-topbar">
+        <span class="wf-dot wf-dot-r"></span>
+        <span class="wf-dot wf-dot-y"></span>
+        <span class="wf-label">n8n</span>
+      </div>
+      <svg class="wf-svg" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- Connection paths -->
+        <path class="wf-path" d="M 82 60 C 110 60, 110 60, 138 60"/>
+        <path class="wf-path wf-path-2" d="M 82 60 C 110 60, 110 110, 138 110"/>
+        <path class="wf-path wf-path-3" d="M 82 60 C 110 60, 110 160, 138 160"/>
+        <path class="wf-path wf-path-4" d="M 218 60 C 246 60, 246 110, 274 110"/>
+        <path class="wf-path wf-path-5" d="M 218 110 C 246 110, 246 110, 274 110"/>
+        <path class="wf-path wf-path-2" d="M 218 160 C 246 160, 246 110, 274 110"/>
+
+        <!-- Webhook node -->
+        <rect x="8" y="38" width="74" height="44" rx="8" fill="rgba(13,15,43,0.9)" stroke="rgba(123,126,248,0.5)" stroke-width="1.2"/>
+        <rect x="18" y="52" width="20" height="16" rx="3" fill="rgba(123,126,248,0.25)" stroke="rgba(123,126,248,0.6)" stroke-width="1"/>
+        <path d="M 24 58 L 28 63 L 32 58" stroke="#a0a3ff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <text x="42" y="58" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="600" fill="#b0b8e0">Webhook</text>
+        <text x="42" y="68" font-family="DM Sans, sans-serif" font-size="6.5" fill="#4a5080">Trigger</text>
+
+        <!-- Filter node -->
+        <rect x="138" y="38" width="80" height="44" rx="8" fill="rgba(13,15,43,0.9)" stroke="rgba(123,126,248,0.4)" stroke-width="1.2"/>
+        <path d="M 154 53 L 162 53 M 156 58 L 160 58 M 157.5 63 L 158.5 63" stroke="#7b7ef8" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="168" y="58" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="600" fill="#b0b8e0">AI Agent</text>
+        <text x="168" y="68" font-family="DM Sans, sans-serif" font-size="6.5" fill="#4a5080">Groq · Gemini</text>
+
+        <!-- Route 2: middle node -->
+        <rect x="138" y="88" width="80" height="44" rx="8" fill="rgba(13,15,43,0.9)" stroke="rgba(123,126,248,0.3)" stroke-width="1.2"/>
+        <rect x="150" y="103" width="14" height="14" rx="3" fill="rgba(74,222,128,0.15)" stroke="rgba(74,222,128,0.5)" stroke-width="1"/>
+        <path d="M 154 110 L 157 113 L 162 106" stroke="#4ade80" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <text x="170" y="108" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="600" fill="#b0b8e0">Google</text>
+        <text x="170" y="118" font-family="DM Sans, sans-serif" font-size="6.5" fill="#4a5080">Sheets · Docs</text>
+
+        <!-- Route 3: bottom node -->
+        <rect x="138" y="138" width="80" height="44" rx="8" fill="rgba(13,15,43,0.9)" stroke="rgba(123,126,248,0.3)" stroke-width="1.2"/>
+        <rect x="150" y="152" width="16" height="12" rx="2" fill="rgba(123,126,248,0.15)" stroke="rgba(123,126,248,0.5)" stroke-width="1"/>
+        <path d="M 150 155 L 166 155" stroke="#7b7ef8" stroke-width="1" opacity="0.5"/>
+        <text x="172" y="157" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="600" fill="#b0b8e0">Slack</text>
+        <text x="172" y="167" font-family="DM Sans, sans-serif" font-size="6.5" fill="#4a5080">Notify team</text>
+
+        <!-- Action node (final) -->
+        <rect x="274" y="88" width="76" height="44" rx="8" fill="rgba(123,126,248,0.15)" stroke="rgba(123,126,248,0.7)" stroke-width="1.5"/>
+        <path d="M 287 108 L 294 101 L 301 108 M 294 101 L 294 115" stroke="#a0a3ff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="306" y="106" font-family="DM Sans, sans-serif" font-size="7.5" font-weight="600" fill="#c8caff">Action</text>
+        <text x="306" y="116" font-family="DM Sans, sans-serif" font-size="6.5" fill="#7b7ef8">Complete</text>
+      </svg>
+      <div class="wf-status">
+        <span class="wf-status-dot"></span>
+        Live · 0 errors
+      </div>
+      <div class="wf-runs">67 runs / 24h</div>
+    </div>
   </div>
 </section>
 
